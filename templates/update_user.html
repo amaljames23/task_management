@@ -1,0 +1,50 @@
+
+
+
+{%include 'admin_header.html'%}
+
+
+    <h2 class="form-title">Update User</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+      <table>
+        <tr>
+          <th>FIRST NAME</th>
+          <td><input type="text" name="first_name" value="{{a.first_name}}" placeholder="Enter your first name" required></td>
+        </tr>
+        <tr>
+          <th>LAST NAME</th>
+          <td><input type="text" name="last_name" value="{{a.last_name}}" placeholder="Enter your last name" required></td>
+        </tr>
+        <tr>
+          <th>EMAIL</th>
+          <td><input type="email" name="email" value="{{a.email}}" placeholder="Enter your email address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address."></td>
+        </tr>
+        <tr>
+          <th>PLACE</th>
+          <td><input type="text" name="place" value="{{a.place}}" placeholder="Enter your city/town" required></td>
+        </tr>
+        <tr>
+          <th>DISTRICT</th>
+          <td><input type="text" name="district" value="{{a.district}}" placeholder="Enter your district" required></td>
+        </tr>
+        <tr>
+          <th>PINCODE</th>
+          <td><input type="text" name="pincode" value="{{a.pincode}}" placeholder="Enter your pincode" required pattern="^[0-9]{6}$" title="Please enter a 6-digit pincode."></td>
+        </tr>
+        <tr>
+          <th>HOUSE NO</th>
+          <td><input type="text" name="houseno" value="{{a.house_no}}" placeholder="Enter your house number" required pattern="^[a-zA-Z0-9\s\-]+$" title="House number can contain letters, numbers, spaces, and hyphens."></td>
+        </tr>
+        <tr>
+          <th>PHONE NO</th>
+          <td><input type="text" name="phone" value="{{a.phone_no}}" placeholder="Enter your phone number" required pattern="^[0-9]{10}$" title="Please enter a 10-digit phone number."></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" name="submit" value="Update"></td>
+        </tr>
+      </table>
+    </form>
+
+
+{%include 'footer.html'%}

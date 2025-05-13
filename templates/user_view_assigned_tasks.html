@@ -1,0 +1,41 @@
+
+
+
+
+
+{%include 'user_header.html'%}
+
+
+<h2>Assigned Tasks</h2>
+  <table border="2">
+    <tr>
+      <th>SL No</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Report</th>
+      <th>Worked Hour</th>
+      <th></th>
+    </tr>
+    {% for i in tasks %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.title }}</td>
+      <td>{{ i.description }}</td>
+      <td>{{ i.due_date }}</td>
+      <td>{{ i.status }}</td>
+      <td>{{ i.report }}</td>
+      <td>{{ i.worked_hr }}</td>
+
+      {%if i.report == 'pending'%}
+      <td><a href="/user_updated_task_status/{{i.task_id}}">Update status</a></td>
+      {%else%}
+      <td>Task Completed</td>
+        {%endif%}
+   
+      
+    {% endfor %}
+  </table>
+
+{%include 'footer.html'%}

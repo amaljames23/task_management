@@ -1,0 +1,97 @@
+
+
+{%include 'admin_header.html'%}
+
+<h2 class="form-title">User Registration</h2>
+    <form action="" method="post">
+                {% csrf_token %}
+      <table>
+        <tr>
+          <th>FIRST NAME</th>
+          <td><input type="text" name="first_name" placeholder="Enter your first name" required pattern="[A-Za-z]+" title="First name should only contain letters."></td>
+        </tr>
+        <tr>
+          <th>LAST NAME</th>
+          <td><input type="text" name="last_name" placeholder="Enter your last name" required pattern="[A-Za-z]+" title="Last name should only contain letters."></td>
+        </tr>
+        <tr>
+          <th>EMAIL</th>
+          <td><input type="email" name="email" placeholder="Enter your email address" required></td>
+        </tr>
+        <tr>
+          <th>PLACE</th>
+          <td><input type="text" name="place" placeholder="Enter your city/town" required pattern="[A-Za-z\s]+" title="Place should only contain letters and spaces."></td>
+        </tr>
+        <tr>
+          <th>DISTRICT</th>
+          <td><input type="text" name="district" placeholder="Enter your district" required pattern="[A-Za-z\s]+" title="District should only contain letters and spaces."></td>
+        </tr>
+        <tr>
+          <th>PINCODE</th>
+          <td><input type="text" name="pincode" placeholder="Enter your pincode" required pattern="^\d{6}$" title="Pincode should be a 6-digit number."></td>
+        </tr>
+        <tr>
+          <th>HOUSE NO</th>
+          <td><input type="text" name="houseno" placeholder="Enter your house number" required pattern="\d+" title="House number should be a numeric value."></td>
+        </tr>
+        <tr>
+          <th>PHONE NO</th>
+          <td><input type="text" name="phone" placeholder="Enter your phone number" required pattern="^\d{10}$" title="Phone number should be 10 digits long."></td>
+        </tr>
+        <tr>
+          <th>USERNAME</th>
+          <td><input type="text" name="uname" placeholder="Choose a username" required pattern="^[a-zA-Z0-9_]+$" title="Username should only contain letters, numbers, and underscores."></td>
+        </tr>
+        <tr>
+          <th>PASSWORD</th>
+          <td><input type="password" name="password" placeholder="Choose a password" required 
+                     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,}$" 
+                     title="Password must be at least 4 characters long, contain at least one letter and one number."></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" name="submit" value="Register"></td>
+        </tr>
+      </table>
+    </form>
+
+
+
+
+    <h2>Registered Users</h2>
+  <table border="2">
+    <tr>
+      <th>SL No</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Place</th>
+      <th>District</th>
+      <th>Pin Code</th>
+      <th>House No</th>
+      <th>Phone No</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    {% for i in users %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.first_name }}</td>
+      <td>{{ i.last_name }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.place }}</td>
+      <td>{{ i.district }}</td>
+      <td>{{ i.pincode }}</td>
+      <td>{{ i.house_no }}</td>
+      <td>{{ i.phone_no }}</td>
+      <td class="action-buttons">
+        <a href="/admin_update_user/{{ i.user_id }}" class="btn-success">Update</a>
+      </td>
+      <td class="action-buttons">
+        <a href="/delete_user/{{ i.login_id }}" class="btn-success" onclick="return confirm('Are you sure want to delete this admin?')">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{%include 'footer.html'%}

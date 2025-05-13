@@ -1,0 +1,42 @@
+
+
+
+
+{%include 'admin_header.html'%}
+
+  <h2>Choose an user to Assign</h2>
+  <table border="2">
+    <tr>
+      <th>SL No</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Place</th>
+      <th>District</th>
+      <th>Pin Code</th>
+      <th>House No</th>
+      <th>Phone No</th>
+      <th></th>
+    </tr>
+
+
+    {% for i in users %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.first_name }}</td>
+      <td>{{ i.last_name }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.place }}</td>
+      <td>{{ i.district }}</td>
+      <td>{{ i.pincode }}</td>
+      <td>{{ i.house_no }}</td>
+      <td>{{ i.phone_no }}</td>
+      <td class="action-buttons">
+        <a href="/assign_task_to_user/{{ i.user_id }}" class="btn-success">Assign</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{%include 'footer.html'%}

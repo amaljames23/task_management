@@ -1,0 +1,26 @@
+
+
+
+
+
+{%include 'user_header.html'%}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Report</th>
+            <td><input type="text" name="report" ></td>
+        </tr>
+        <tr>
+            <th>Worked Hours</th>
+            <td><input type="text" name="hrs" ></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="add" ></td>
+        </tr>
+    </table>
+</form>
+
+
+{%include 'footer.html'%}

@@ -1,0 +1,86 @@
+
+
+
+
+{%include 'admin_header.html'%}
+<h2 class="form-title">Manage Tasks</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+      <table>
+        <tr>
+          <th>ENTER TASK TITLE</th>
+          <td>
+            <input type="text" name="title" placeholder="Enter task title" required 
+                   pattern="^[A-Za-z0-9\s\.,!?'"-]*$" 
+                   title="Title can only contain letters, numbers, and basic punctuation (.,!?'-)">
+          </td>
+        </tr>
+        <tr>
+          <th>DESCRIPTION</th>
+          <td>
+            <input type="text" name="description" placeholder="Enter description" required 
+                   pattern="^[A-Za-z0-9\s\.,!?'"()-]*$" 
+                   title="Description can contain letters, numbers, spaces, and basic punctuation (.,!?()'-)">
+          </td>
+        </tr>
+        <tr>
+          <th>DUE DATE</th>
+          <td><input type="date" name="date" placeholder="Enter last date for submission" required></td>
+        </tr>
+  
+        <tr>
+          <td colspan="2"><input type="submit" name="submit" value="Add"></td>
+        </tr>
+      </table>
+    </form>
+
+
+
+    <h2>Added Task lists</h2>
+  <table border="2">
+    <tr>
+      <th>SL No</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Report</th>
+      <th>Worked Hour</th>
+      <th></th>
+      <th></th>
+  
+    </tr>
+    {% for i in tasks %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.title }}</td>
+      <td>{{ i.description }}</td>
+      <td>{{ i.due_date }}</td>
+      <td>{{ i.status }}</td>
+      <td>{{ i.report }}</td>
+      <td>{{ i.worked_hr }}</td>
+   
+      <!-- <td class="action-buttons">
+        <a href="/admin_task_update/{{ i.task_id }}" class="btn-success">Update</a>
+      </td> -->
+      <td class="action-buttons">
+        <a href="/delete_task/{{ i.task_id }}" class="btn-success" onclick="return confirm('Are you sure want to delete this admin?')">Delete</a>
+      </td>
+      {%if i.status == 'pending'%}
+      <td class="action-buttons">
+        <a href="/admin_task_assign/{{ i.task_id }}" class="btn-success" onclick="return confirm('Are you sure want to Assign this Task?')">Assign Task</a>
+      </td>
+      {%endif%}
+
+    
+      {%if i.status == 'Assigned'%}
+      <td class="action-buttons">
+        <a href="/admin_view_assigned_users/{{ i.user_id }}" class="btn-success" onclick="return confirm('Are you sure want to Assign this Task?')">Assigned User</a>
+      </td>
+      {%endif%}
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{%include 'footer.html'%}
